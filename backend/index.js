@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
 
 // middlewares
-const cors = require("cors");
+import cors from 'cors'
 
 app.use(cors({
   origin: "https://bounce-taxi-booking-shreyansh.vercel.app",
