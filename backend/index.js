@@ -1,7 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
-import cors from 'cors'
 import colors from 'colors'
 import connectDb from './config/db.js'
 import authRouter from './routes/authRoutes.js'
@@ -17,13 +16,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
 
 // middlewares
-const corsOptions = {
-  origin: "https://bounce-taxi-booking-shreyansh.vercel.app", // Specify the allowed origin
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Include credentials like cookies
-};
+const cors = require("cors");
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: "https://bounce-taxi-booking-shreyansh.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json())
 app.use(morgan('dev'))
 
