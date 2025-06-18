@@ -11,14 +11,18 @@ const SearchingRide = ({ rideId, dist, fare, to, from, setIsLoading }) => {
     const jwtToken = localStorage.getItem('token');
     const fetchStatus = async()=>{
         try {
-            const res = await axios.post('http://localhost:8080/api/v1/user/getRideDetails', {
-                rideId
-            }, {
+            const res = await axios.post(
+              "https://taxi-booking-app-one.vercel.app/api/v1/user/getRideDetails",
+              {
+                rideId,
+              },
+              {
                 headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+                  Authorization: `Bearer ${jwtToken}`,
+                  "Content-Type": "application/json",
+                },
+              }
+            );
             if(res.data.ride.rider !== ""){
                 setRideStatus("Booked")
                 navigate("/booked")

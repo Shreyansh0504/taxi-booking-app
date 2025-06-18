@@ -32,13 +32,16 @@ const Authpage = ({ setNotificationMessage, setIsLoading, setUser }) => {
         setIsLoading(true)
         try {
             const uname = registerName[0].toUpperCase() + registerName.slice(1, registerName.length)
-            const res = await axios.post('http://localhost:8080/api/v1/auth/register', {
+            const res = await axios.post(
+              "https://taxi-booking-app-one.vercel.app/api/v1/auth/register",
+              {
                 name: uname,
                 email: registerEmail,
                 password: registerPassword,
                 phone: registerPhone,
-                userType: registeredUserType
-            });
+                userType: registeredUserType,
+              }
+            );
             setTimeout(() => {
                 setIsLoading(false)
             }, 500);
@@ -56,10 +59,13 @@ const Authpage = ({ setNotificationMessage, setIsLoading, setUser }) => {
         e.preventDefault();
         setIsLoading(true)
         try {
-            const res = await axios.post('http://localhost:8080/api/v1/auth/login', {
+            const res = await axios.post(
+              "https://taxi-booking-app-one.vercel.app/api/v1/auth/login",
+              {
                 email: loginEmail,
                 password: loginPassword,
-            });
+              }
+            );
             if (res.data) {
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("user", JSON.stringify(res.data.user))

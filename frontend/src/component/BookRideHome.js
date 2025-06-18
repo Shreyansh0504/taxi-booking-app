@@ -79,20 +79,23 @@ const BookRideHome = ({setRideId, setIsLoading, setPrice, setDistance, user, ori
                         setPrice(dist * 10)
                         const jwtToken = localStorage.getItem('token');
                         const date = new Date()
-                        const response = await fetch('http://localhost:8080/api/v1/user/bookRide', {
-                            method: 'POST',
+                        const response = await fetch(
+                          "https://taxi-booking-app-one.vercel.app/api/v1/user/bookRide",
+                          {
+                            method: "POST",
                             body: JSON.stringify({
-                                from: origin,
-                                to: destination,
-                                distance: dist,
-                                fare: dist * 10,
-                                date
+                              from: origin,
+                              to: destination,
+                              distance: dist,
+                              fare: dist * 10,
+                              date,
                             }),
                             headers: {
-                                'Authorization': `Bearer ${jwtToken}`,
-                                'Content-Type': 'application/json'
-                            }
-                        });
+                              Authorization: `Bearer ${jwtToken}`,
+                              "Content-Type": "application/json",
+                            },
+                          }
+                        );
 
                         if (response.ok) {
                             const data = await response.json();

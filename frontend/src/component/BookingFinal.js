@@ -8,13 +8,16 @@ const BookingFinal = ({ rideId, dist, fare, to, from, setIsLoading }) => {
     async function fetchRiderData() {
         const jwtToken = localStorage.getItem('token');
 
-        const response = await axios.post('http://localhost:8080/api/v1/user/getRiderDetails',
-            { rideId: rideId }, {
+        const response = await axios.post(
+          "https://taxi-booking-app-one.vercel.app/api/v1/user/getRiderDetails",
+          { rideId: rideId },
+          {
             headers: {
-                'Authorization': `Bearer ${jwtToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
+              Authorization: `Bearer ${jwtToken}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.data) {
             setNo(response.data.riderPhone)

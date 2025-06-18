@@ -8,13 +8,16 @@ const RideHistory = ({ setIsLoading }) => {
     async function fetchAllRidesData() {
         const jwtToken = localStorage.getItem('token');
 
-        const response = await fetch('http://localhost:8080/api/v1/user/getallrides', {
-            method: 'GET',
+        const response = await fetch(
+          "https://taxi-booking-app-one.vercel.app/api/v1/user/getallrides",
+          {
+            method: "GET",
             headers: {
-                'Authorization': `Bearer ${jwtToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
+              Authorization: `Bearer ${jwtToken}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (response.ok) {
             const data = await response.json();
 

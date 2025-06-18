@@ -8,12 +8,15 @@ const AvailableRides = ({customer, setIsLoading, user, setCustomer}) => {
   const jwtToken = localStorage.getItem('token');
   const fetchAvailableRides = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/v1/user/getAllAvailableRides', {
-        headers: {
-          'Authorization': `Bearer ${jwtToken}`,
-          'Content-Type': 'application/json'
+      const res = await axios.get(
+        "https://taxi-booking-app-one.vercel.app/api/v1/user/getAllAvailableRides",
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       setAvailableRides(res.data.availableRides)
     } catch (error) {
@@ -24,14 +27,19 @@ const AvailableRides = ({customer, setIsLoading, user, setCustomer}) => {
   const acceptRide = async (rideId, riderId) => {
     try {
       setIsLoading(true)
-      const res = await axios.put('http://localhost:8080/api/v1/user/acceptRide', {
-        rideId, riderId
-      }, {
-        headers: {
-          'Authorization': `Bearer ${jwtToken}`,
-          'Content-Type': 'application/json'
+      const res = await axios.put(
+        "https://taxi-booking-app-one.vercel.app/api/v1/user/acceptRide",
+        {
+          rideId,
+          riderId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       if (res.data) {
         setCustomer({

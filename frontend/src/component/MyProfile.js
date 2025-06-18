@@ -14,13 +14,16 @@ const MyProfile = ({ user, setIsLoading }) => {
   async function fetchUserData() {
     const jwtToken = localStorage.getItem('token');
 
-    const response = await fetch('http://localhost:8080/api/v1/user/myprofile', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${jwtToken}`,
-        'Content-Type': 'application/json'
+    const response = await fetch(
+      "https://taxi-booking-app-one.vercel.app/api/v1/user/myprofile",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
 
     if (response.ok) {
       const res = await response.json();
